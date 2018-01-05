@@ -28,3 +28,6 @@ background-color: #f48fb1;
   text-shadow: 2px 1px #eceff1;
   padding: 5%;
 }
+ .auth-image:hover, .networking:hover{
+  opacity: .5;
+}

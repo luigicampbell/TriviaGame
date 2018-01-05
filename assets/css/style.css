@@ -1,4 +1,4 @@
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 412px) {
   .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 50px;
@@ -23,12 +23,12 @@
     padding: 5%;
   }
   .answer{
-    padding: 20%;
+    padding: 10%;
   }
   #connect{
     align: center;
     text-shadow: 2px 1px #eceff1;
-    padding: 5%;
+    padding: 15%;
   }
   .networking{
     max-width: 60px;

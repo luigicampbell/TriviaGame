@@ -12,6 +12,9 @@
     text-align: center;
     box-shadow: 5px 5px #ffcdd2;
   }
+  #category{
+    padding: 5%;
+  }
   #question{
     padding: 10%;
   }
@@ -23,7 +26,7 @@
     padding: 8%;
   }
   .answer{
-    padding: 10%;
+    padding: 15%;
   }
   #connect{
     align: center;
@@ -38,7 +41,7 @@
     opacity: .5;
   }
 }
-@media only screen and (max-width: 414px) and (max-height: 732px) {
+@media only screen and (min-width: 414px) and (max-height: 732px) {
   .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 50px;

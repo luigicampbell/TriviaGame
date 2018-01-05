@@ -1,4 +1,4 @@
-@media only screen and (max-width: 412px) {
+@media only screen and (max-width: 375px) and (max-height: 668px) {
   .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 50px;
@@ -20,7 +20,7 @@
   }
   .item1{
     grid-column: 1 / -1;
-    padding: 5%;
+    padding: 8%;
   }
   .answer{
     padding: 10%;
@@ -28,7 +28,7 @@
   #connect{
     align: center;
     text-shadow: 2px 1px #eceff1;
-    padding: 15%;
+    padding: 6%;
   }
   .networking{
     max-width: 60px;
@@ -37,6 +37,45 @@
   .networking:hover{
     opacity: .5;
   }
-
-
+}
+@media only screen and (max-width: 414px) and (max-height: 732px) {
+  .container{
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 50px;
+    text-shadow: 2px 1px #f8bbd0;
+    color: white;
+    background-color: #ffcdd2;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 25% 25% 25% 25%;
+    grid-gap: 5px;
+    text-align: center;
+    box-shadow: 5px 5px #ffcdd2;
+  }
+  #question{
+    padding: 10%;
+    font-size: 25px;
+  }
+  .container>div{
+    background-color: #f48fb1;
+  }
+  .item1{
+    grid-column: 1 / -1;
+    padding: 8%;
+  }
+  .answer{
+    padding: 15%;
+  }
+  #connect{
+    align: center;
+    text-shadow: 2px 1px #eceff1;
+    padding: 10%;
+  }
+  .networking{
+    max-width: 60px;
+    height: 60px;
+  }
+  .networking:hover{
+    opacity: .5;
+  }
 }

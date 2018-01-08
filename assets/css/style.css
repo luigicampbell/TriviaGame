@@ -25,11 +25,11 @@
     color: white;
     font-size: 20px;
   }
-.answer:hover{
+#button0, #button1, #button2, #button3,.answer:hover{
     cursor: pointer;
     background-color: #ec407a;
   }
-  #quiz{
+  #category{
     padding: 5%;
   }
   #question{

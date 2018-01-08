@@ -1,4 +1,4 @@
-  .container{
+  /* .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 40px;
     text-shadow: 2px 1px #f8bbd0;
@@ -16,6 +16,10 @@
     font-size: 40px;
     text-shadow: 2px 1px #f8bbd0;
     color: white;
+  }
+  #question{
+    color: white;
+    font-size: 20px;
   }
 .answer:hover{
     cursor: pointer;
@@ -49,4 +53,4 @@
   }
   .networking:hover{
     opacity: .5;
-  }
+  } */

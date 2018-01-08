@@ -1,46 +1,33 @@
-var Question(text, answer, choices){
-  this.text = text;
-  this.answer = answer;
-  this.choice = choices;
+// Creating a quiz populater
+function populate(){
+// Check if quiz is ended
+  if(quiz.isEnded()){
+  // checkScore();
+  }
+  else {
+  // Show question
+  var element = document.getElementById("question");
+  element.innerHtml = quiz.getQuestionIndex().text;
+  // Show Choices
+  var choices = quiz.getQuestionIndex().choices;
+  for (var i = 0; i < choices.length; i++){
+    var element = document.getElementById("answer" + i);
+    element.innerHtml = choices[i];
+  }
+  }
 }
-
-Question.prototype.correctAnswer = function functionName(choice) {
-  return choice === this.answer;
-}
-function Quiz(questions){
-  this.score = 0;
-  this.questions = questions;
-  this.questionIndex = 0;
-}
-Quiz.prototype.getQuestionIndex = function() {
-  return this.questions[this.questionIndex];
-}
-Quiz.prototype.isEnded = function(){
-  return this.questions.length === this.questionIndex;
-}
-Quiz.prototype.guess = function(answer) {
-  
-}
-//
-// var questions = {
-//   diamond:
-//   {
-//     name: "Diamond",
-//     value: 0
-//   },
-//   sapphire:
-//   {
-//     name: "Sapphire",
-//     value: 0
-//   },
-//   ruby:
-//   {
-//     name: "Ruby",
-//     value: 0
-//   },
-//   emerald:
-//   {
-//     name: "Emerald",
-//     value: 0
-//   }
-// };
+// Instances of Question courtesy of GF in LE Program @ Cedars
+var questions = [
+  new Question("What is Medela's Hospital Grade Pump called?", "Symphony",["Pumpin' Style", "Spectra", "Harmony","Symphony"]),
+  new Question("How many different sizes of Breast Shield are there?", "Five",["Two","Three","Nine","Five"]),
+  new Question("What is the first type of milk produced during pregnancy called?","Colostrum",["Colostrum","Whey","Blooded","Dry Milk"]),
+  new Question("What is Mastitis?", "Infection caused by 'plugged ducts'",["Enlarged breasts","A type of breast cancer", "Infection caused by 'plugged ducts'","Low milk production"]),
+  new Question("Many women with Mastitis feel like they have ______","The Flu",["Low Milk Supply","The Flu","Chicken Pox","Yeast Infection"]),
+  new Question("What hormone is necessary to induce lactation?","Prolactin",["Progesterone","Prolactin","Estrogen","Lactation is not caused by hormones"]),
+  new Question("Who created My 'Breast Friend'","Andrew Zenoff",["Bill Clinton","Andrew Zenoff","Romina Ross","Rosslyn Romanov"]),
+  new Question("Where is the ONLY Milk Bank in California?","San Jose",["San Francisco", "San Diego", "Los Angelesm","San Jose"]),
+  new Question("Who is tasked with helping a family about breast feeding?","Lactation Consultant",["Lactation Consultant", "General Nurse Practitioner with 1800 Hours of Lactation Education", "Obsterician","Mastitician"]),
+  new Question("What causes the condition known as 'sore nipples' in breast feeding?","Babies Latched Incorrectly", ["Babies Latched Incorrectly","Teething","Breast-Feeding Toddlers","Engorged Breasts"])
+];
+var quiz = new Quiz(questions);
+populate();

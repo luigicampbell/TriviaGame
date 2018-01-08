@@ -23,32 +23,33 @@ next question function that calls timer function
 Don't forget to include a countdown timer. -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Script</title>
-    <link rel="stylesheet" href="assets/css/reset.css">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia Script</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
   <link href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One" rel="stylesheet">
   <link rel="icon" type="image/png" href="assets/images/favicon.ico">
   <link rel="stylesheet" href="assets/css/style.css">
-  </head>
-  <body>
-<div class="container">
-  <div id="category" class="item1">Category/Timer</div>
-  <div id="question"class="item1">Questions</div>
-  <div class="item1">score: <span id="score"></span></div>
-  <div class="answer"><button id="button1">answer<span id="answer1"></span></button></div>
-  <div class="answer"><button id="button2">answer<span id="answer2"></span></button></div>
-  <div class="answer"><button id="button3">answer<span id="answer3"></span></button></div>
-  <div class="answer"><button id="button4">answer<span id="answer4"></span></button></div>
-  <div id="connect" class="item1">
-    <a href="https://github.com/luigicampbell" target="_blank"><img src="assets/images/if_github_square_black_107109.png"   class="networking" alt="Github"></a>
-    <a href="https://www.linkedin.com/in/luigi-campbell-464838149/" target="_blank"><img src="assets/images/if_linkedin_square_color_107091.png"   class="networking" alt="LinkedIn"></a>
-    <a href="https://stackoverflow.com/users/8793814/luigi" target="_blank"><img src="assets/images/if_StackOverflow_273179.png"   class="networking" alt="Stackoverflow"></a>
-  </div>
+</head>
+<body>
+  <div class="container">
+    <div id="category" class="item1">Category/Timer</div>
+    <div class="item1"><span id="question"></span></div>
+    <div class="item1">score: <span id="score"></span></div>
+    <div class="answer"><button id="button1">answer<span id="answer0"></span></button></div>
+    <div class="answer"><button id="button2">answer<span id="answer1"></span></button></div>
+    <div class="answer"><button id="button3">answer<span id="answer2"></span></button></div>
+    <div class="answer"><button id="button4">answer<span id="answer3"></span></button></div>
+    <div id="connect" class="item1">
+      <a href="https://github.com/luigicampbell" target="_blank"><img src="assets/images/if_github_square_black_107109.png"   class="networking" alt="Github"></a>
+      <a href="https://www.linkedin.com/in/luigi-campbell-464838149/" target="_blank"><img src="assets/images/if_linkedin_square_color_107091.png"   class="networking" alt="LinkedIn"></a>
+      <a href="https://stackoverflow.com/users/8793814/luigi" target="_blank"><img src="assets/images/if_StackOverflow_273179.png"   class="networking" alt="Stackoverflow"></a>
+    </div>
 
-</div>
-  </body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/game.js"></script>
+  </div>
+</body>
+<script src="assets/js/controller.js"></script>
+<script src="assets/js/questions.js"></script>
+<script src="assets/js/game.js"></script>
 </html>

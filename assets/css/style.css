@@ -1,4 +1,4 @@
-  /* .container{
+  .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 40px;
     text-shadow: 2px 1px #f8bbd0;
@@ -25,7 +25,7 @@
     cursor: pointer;
     background-color: #ec407a;
   }
-  #category{
+  #quiz{
     padding: 5%;
   }
   #question{
@@ -53,4 +53,4 @@
   }
   .networking:hover{
     opacity: .5;
-  } */
+  }

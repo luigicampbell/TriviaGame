@@ -1,20 +1,43 @@
 // Creating a quiz populater
 function populate(){
-// Check if quiz is ended
+  // Check if quiz is ended
   if(quiz.isEnded()){
-  // checkScore();
+    // checkScore();
   }
   else {
-  // Show question
-  var element = document.getElementById("question");
-  element.innerHtml = quiz.getQuestionIndex().text;
-  // Show Choices
-  var choices = quiz.getQuestionIndex().choices;
-  for (var i = 0; i < choices.length; i++){
-    var element = document.getElementById("answer" + i);
-    element.innerHtml = choices[i];
+    // Show question
+    var element = document.getElementById("question");
+    element.innerHtml = quiz.getQuestionIndex().text;
+    // Show Choices
+    var choices = quiz.getQuestionIndex().choices;
+    for (var i = 0; i < choices.length; i++){
+      var element = document.getElementById("answer" + i);
+      element.innerHtml = choices[i];
+      guess("button" + i, choices[i])
+    }
+    showProgress();
   }
+};
+// Passes id and guess
+function guess(id, guess) {
+  var button = document.getElementById(id);
+  button.onclick = function() {
+    quiz.guess(guess);
+    populate();
   }
+}
+// Shows progress
+function showProgress() {
+  var currentQuestionNumber = quiz.questionIndex + 1;
+  var element = getElementById("progress");
+  element.innerHtml = currentQuestionNumber + " / " + quiz.questions.length;
+}
+// Prints End Game and Scores to html
+function showScores() {
+  var gameOverHtml = "<h1>Results:</h1>";
+  gameOverHtml += "<h2 id='score'> You answered: " + quiz.score + "</h2>";
+  var element = document.getElementById("quiz");
+  element.innerHtml = gameOverHtml;
 }
 // Instances of Question courtesy of GF in LE Program @ Cedars
 var questions = [

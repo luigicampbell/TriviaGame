@@ -44,7 +44,7 @@ function showScores() {
   var gameOverHtml = "<h1>Results:</h1>";
   gameOverHtml += "<h2 id='score'> You answered: " + quiz.score + "</h2>";
   var element = document.getElementById("quiz");
-  element.innerHtml = gameOverHtml;
+  element.innerHTML = gameOverHtml;
 }
 // Instances of Question courtesy of GF in LE Program @ Cedars
 var questions = [

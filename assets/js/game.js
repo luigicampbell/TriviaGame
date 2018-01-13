@@ -1,19 +1,24 @@
+window.onload = function(){
+
 // Creating a quiz populater
-function populate(){
+function populate() {
   // Check if quiz is ended
-  if(quiz.isEnded()){
-    // checkScore();
+  if(quiz.isEnded()) {
+    console.log('inside isEnded');
+    showScores();
   }
   else {
+    console.log('inside should start');
     // Show question
     var element = document.getElementById("question");
-    element.innerHtml = quiz.getQuestionIndex().text;
+    console.log('inside game.js, choices for question: '); console.log(quiz.getQuestionIndex());
+    element.innerHTML = quiz.getQuestionIndex().text;
     // Show Choices
     var choices = quiz.getQuestionIndex().choices;
     for (var i = 0; i < choices.length; i++){
-      var element = document.getElementById("answer" + i);
-      element.innerHtml = choices[i];
-      guess("button" + i, choices[i])
+      var element = document.getElementById("choice" + i);
+      element.innerHTML = choices[i];
+      guess("button" + i, choices[i]);
     }
     showProgress();
   }
@@ -29,8 +34,10 @@ function guess(id, guess) {
 // Shows progress
 function showProgress() {
   var currentQuestionNumber = quiz.questionIndex + 1;
-  var element = getElementById("progress");
-  element.innerHtml = currentQuestionNumber + " / " + quiz.questions.length;
+  var element = document.getElementById("progress");
+  element.innerHTML = currentQuestionNumber + " / " + quiz.questions.length;
+
+  quiz.questionIndex += 1;
 }
 // Prints End Game and Scores to html
 function showScores() {
@@ -41,11 +48,11 @@ function showScores() {
 }
 // Instances of Question courtesy of GF in LE Program @ Cedars
 var questions = [
-  new Question("What is Medela's Hospital Grade Pump called?", "Symphony",["Pumpin' Style", "Spectra", "Harmony","Symphony"]),
+  new Question("What is Medela's Hospital Grade Pump called?","Symphony",["Pumpin' Style", "Spectra", "Harmony","Symphony"]),
   new Question("How many different sizes of Breast Shield are there?", "Five",["Two","Three","Nine","Five"]),
   new Question("What is the first type of milk produced during pregnancy called?","Colostrum",["Colostrum","Whey","Blooded","Dry Milk"]),
   new Question("What is Mastitis?", "Infection caused by 'plugged ducts'",["Enlarged breasts","A type of breast cancer", "Infection caused by 'plugged ducts'","Low milk production"]),
-  new Question("Many women with Mastitis feel like they have ______","The Flu",["Low Milk Supply","The Flu","Chicken Pox","Yeast Infection"]),
+  new Question("Many women with Mastitis feel like they have ______","The Flu",["Low Milk Supply","The Flu","Chicken Pox","a Yeast Infection"]),
   new Question("What hormone is necessary to induce lactation?","Prolactin",["Progesterone","Prolactin","Estrogen","Lactation is not caused by hormones"]),
   new Question("Who created My 'Breast Friend'","Andrew Zenoff",["Bill Clinton","Andrew Zenoff","Romina Ross","Rosslyn Romanov"]),
   new Question("Where is the ONLY Milk Bank in California?","San Jose",["San Francisco", "San Diego", "Los Angelesm","San Jose"]),
@@ -54,3 +61,6 @@ var questions = [
 ];
 var quiz = new Quiz(questions);
 populate();
+
+
+}

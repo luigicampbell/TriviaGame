@@ -50,9 +50,6 @@
     height: 50%;
     object-fit: cover;
   }
-  .answer{
-    /* padding: 20%; */
-  }
   #connect{
     align: center;
     text-shadow: 2px 1px #eceff1;

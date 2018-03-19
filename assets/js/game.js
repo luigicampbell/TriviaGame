@@ -37,7 +37,7 @@ function showProgress() {
   var element = document.getElementById("progress");
   element.innerHTML = currentQuestionNumber + " / " + quiz.questions.length;
 
-  quiz.questionIndex += 1;
+  // quiz.questionIndex +=1;
 }
 // Prints End Game and Scores to html
 function showScores() {

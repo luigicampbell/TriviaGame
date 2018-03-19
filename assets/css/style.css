@@ -9,7 +9,7 @@
     grid-template-rows: 25% 25% 25% 25%;
     grid-gap: 5px;
     text-align: center;
-    box-shadow: 5px 5px #ffcdd2;
+    box-shadow: 5px 5px;
   }
   #button0, #button1, #button2, #button3{
     font-family: 'Pathway Gothic One', sans-serif;

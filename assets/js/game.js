@@ -42,8 +42,8 @@ function showScores() {
   var gameOverHtml = "<h2 id='score'> You answered: " + quiz.score + " out of " + quiz.questions.length + "</h2>";
   var element = document.getElementById("quiz");
   element.innerHTML = gameOverHtml;
-  var winGameHtml = '<div class="item1"><img src="assets/images/win.jpg"></div>';
-  var loseGameHtml = '<div class="item1"><img src="assets/images/lose.jpg"></div>';
+  var winGameHtml = '<div class="item1"><img src="assets/images/win.jpg"><h2>Great Job!!</h2><h2><a href="index.html">Try Again?</a></h2></div><div id="connect" class="item1"><a href="https://github.com/luigicampbell" target="_blank"><img src="assets/images/if_github_square_black_107109.png"   class="networking" alt="Github"></a><a href="https://www.linkedin.com/in/luigi-campbell-464838149/" target="_blank"><img src="assets/images/if_linkedin_square_color_107091.png"   class="networking" alt="LinkedIn"></a><a href="https://stackoverflow.com/users/8793814/luigi" target="_blank"><img src="assets/images/if_StackOverflow_273179.png"   class="networking" alt="Stackoverflow"></a></div>';
+  var loseGameHtml = '<div class="item1"><img src="assets/images/lose.jpg"><h2>Oh Darn... </h2><h2><a href="index.html">Try Again?</a></h2></div><div id="connect" class="item1"><a href="https://github.com/luigicampbell" target="_blank"><img src="assets/images/if_github_square_black_107109.png"   class="networking" alt="Github"></a><a href="https://www.linkedin.com/in/luigi-campbell-464838149/" target="_blank"><img src="assets/images/if_linkedin_square_color_107091.png"   class="networking" alt="LinkedIn"></a><a href="https://stackoverflow.com/users/8793814/luigi" target="_blank"><img src="assets/images/if_StackOverflow_273179.png"   class="networking" alt="Stackoverflow"></a></div>';
   if(quiz.score > 8 ){
     console.log(`Score: ${quiz.score}`);
     console.log("win");

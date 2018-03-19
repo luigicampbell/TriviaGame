@@ -1,7 +1,7 @@
   .container{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 1.5em;
-    text-shadow: 2px 1px #f8bbd0;
+    text-shadow: 0px 0px 2px 0px #f8bbd0;
     color: white;
     background-color: #ffcdd2;
     display: grid;
@@ -15,12 +15,13 @@
   #button0, #button1, #button2, #button3{
     font-family: 'Pathway Gothic One', sans-serif;
     font-size: 1em;
-    text-shadow: 2px 1px #f8bbd0;
+    text-shadow: 0px 0px 2px 0px #f8bbd0;
     color: white;
     border: 0;
     width: 100%;
     height: 100%;
     background-color: #f06292;
+    padding: 37px;
   }
   #question{
     color: white;
@@ -52,7 +53,7 @@
   }
   #connect{
     align: center;
-    text-shadow: 2px 1px #eceff1;
+    text-shadow: 0px 0px 2px 0px #f8bbd0;
     padding: 6%;
   }
   .networking{
@@ -65,3 +66,15 @@
   #score{
     grid-column: span 2;
   }
+h2{
+  padding: 39px;
+  grid-column: span 2;
+}
+h2 > a{
+  text-decoration: none;
+  color: white;
+}
+a:hover{
+  font-size: 2em;
+  color: #e91e63;
+}

@@ -36,14 +36,24 @@ function showProgress() {
   var currentQuestionNumber = quiz.questionIndex + 1;
   var element = document.getElementById("progress");
   element.innerHTML = currentQuestionNumber + " / " + quiz.questions.length;
-
-  // quiz.questionIndex +=1;
 }
 // Prints End Game and Scores to html
 function showScores() {
   var gameOverHtml = "<h2 id='score'> You answered: " + quiz.score + " out of " + quiz.questions.length + "</h2>";
   var element = document.getElementById("quiz");
   element.innerHTML = gameOverHtml;
+  var winGameHtml = '<div class="item1"><img src="assets/images/win.jpg"></div>';
+  var loseGameHtml = '<div class="item1"><img src="assets/images/lose.jpg"></div>';
+  if(quiz.score > 8 ){
+    console.log(`Score: ${quiz.score}`);
+    console.log("win");
+    element.innerHTML += winGameHtml;
+  }
+  else {
+    console.log(`Score: ${quiz.score}`);
+    console.log("lose");
+    element.innerHTML += loseGameHtml;
+  }
 }
 // Instances of Question courtesy of GF in LE Program @ Cedars
 var questions = [
@@ -54,7 +64,7 @@ var questions = [
   new Question("Many women with Mastitis feel like they have ______","The Flu",["Low Milk Supply","The Flu","Chicken Pox","a Yeast Infection"]),
   new Question("What hormone is necessary to induce lactation?","Prolactin",["Progesterone","Prolactin","Estrogen","Lactation is not caused by hormones"]),
   new Question("Who created My 'Breast Friend'","Andrew Zenoff",["Bill Clinton","Andrew Zenoff","Romina Ross","Rosslyn Romanov"]),
-  new Question("Where is the ONLY Milk Bank in California?","San Jose",["San Francisco", "San Diego", "Los Angelesm","San Jose"]),
+  new Question("Where is the ONLY Milk Bank in California?","San Jose",["San Francisco", "San Diego", "Los Angeles","San Jose"]),
   new Question("Who is tasked with helping a family about breast feeding?","Lactation Consultant",["Lactation Consultant", "General Nurse Practitioner with 1800 Hours of Lactation Education", "Obsterician","Mastitician"]),
   new Question("What causes the condition known as 'sore nipples' in breast feeding?","Babies Latched Incorrectly", ["Babies Latched Incorrectly","Teething","Breast-Feeding Toddlers","Engorged Breasts"])
 ];

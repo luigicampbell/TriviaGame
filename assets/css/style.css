@@ -1,6 +1,6 @@
   .container{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 40px;
+    font-size: 1.5em;
     text-shadow: 2px 1px #f8bbd0;
     color: white;
     background-color: #ffcdd2;
@@ -14,7 +14,7 @@
   }
   #button0, #button1, #button2, #button3{
     font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 40px;
+    font-size: 1em;
     text-shadow: 2px 1px #f8bbd0;
     color: white;
     border: 0;
@@ -45,6 +45,11 @@
     grid-column: 1 / -1;
     padding: 5%;
   }
+  .item1 > img {
+    width: 80%;
+    height: 50%;
+    object-fit: cover;
+  }
   .answer{
     /* padding: 20%; */
   }
@@ -62,5 +67,4 @@
   }
   #score{
     grid-column: span 2;
-    grid-row: span 2;
   }

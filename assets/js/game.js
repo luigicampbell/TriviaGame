@@ -41,8 +41,7 @@ function showProgress() {
 }
 // Prints End Game and Scores to html
 function showScores() {
-  var gameOverHtml = "<h1>Results:</h1>";
-  gameOverHtml += "<h2 id='score'> You answered: " + quiz.score + "</h2>";
+  var gameOverHtml = "<h2 id='score'> You answered: " + quiz.score + " out of " + quiz.questions.length + "</h2>";
   var element = document.getElementById("quiz");
   element.innerHTML = gameOverHtml;
 }

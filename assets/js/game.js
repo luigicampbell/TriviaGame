@@ -1,4 +1,5 @@
 window.onload = function(){
+var timeIsOut = false;
 
 // Creating a quiz populater
 function populate() {
@@ -8,9 +9,12 @@ function populate() {
     showScores();
   }
   else {
+    createTimer();
     console.log('inside should start');
     // Show question
     var element = document.getElementById("question");
+    console.log(`Timer should be showing time`);
+
     console.log('inside game.js, choices for question: '); console.log(quiz.getQuestionIndex());
     element.innerHTML = quiz.getQuestionIndex().text;
     // Show Choices
@@ -22,13 +26,38 @@ function populate() {
     }
     showProgress();
   }
+
 };
+
+let seconds = 11;
+
+// Timer Function
+function createTimer(){
+
+  setInterval(function(){
+    seconds--;
+    document.getElementById("timer").innerHTML = seconds < 10 ? `00:0${seconds}` : `00:${seconds}`;
+  }, 1 * 1000);
+
+  if(seconds === 0){
+    clearInterval();
+    seconds = 11;
+  }
+}
+
+// Clear Timer Function
+function myStopFunction() {
+    clearInterval(seconds);
+    seconds = 11;
+}
+
 // Passes id and guess
 function guess(id, guess) {
   var button = document.getElementById(id);
   button.onclick = function() {
     quiz.guess(guess);
     populate();
+    myStopFunction();
   }
 }
 // Shows progress

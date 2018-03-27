@@ -2,7 +2,7 @@ function Quiz(questions) {
   this.score = 0;
   this.questions = questions;
   this.questionIndex = 0;
-  console.log(this.questionIndex);
+  console.log(`This is Question # ${this.questionIndex + 1}`);
 }
 Quiz.prototype.getQuestionIndex = function() {
   return this.questions[this.questionIndex];

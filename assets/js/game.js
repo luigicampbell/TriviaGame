@@ -36,6 +36,11 @@ window.onload = function(){
 
   function myTimer() {
     document.getElementById("timer").innerHTML = seconds < 10 ? `00:0${seconds--}` : `00:${seconds--}`;
+    if(seconds === -1){
+      resetTimer();
+      quiz.guess();
+      populate();
+    }
   }
 
   // Creating a quiz populater
@@ -75,7 +80,7 @@ window.onload = function(){
     var button = document.getElementById(id);
     // Tried inserting condition here to check for time < '0'
     // seconds > 0 ?
-    seconds === 0 ? quiz.guess('outta time') :
+    // seconds === 0 ? quiz.guess('outta time') :
     button.onclick = function() {
       resetTimer();
       quiz.guess(guess);

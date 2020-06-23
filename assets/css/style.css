@@ -1,80 +1,162 @@
-  .container{
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1.5em;
-    text-shadow: 0px 0px 2px 0px #f8bbd0;
-    color: white;
-    background-color: #ffcdd2;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 25% 25% 25% 25%;
-    grid-gap: 5px;
-    text-align: center;
-    box-shadow: 0px 0px 50px 0px #ffcdd2;
-    grid-row: span 1 / -1;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+main {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+  grid-auto-rows: auto;
+  background-color: #ffcdd2;
+  font-size: 1.3em;
+}
+
+section {
+  padding: 1em .5em;
+}
+
+section:nth-child(odd) {
+  background-color: #ffcdd2;
+  color: #000;
+}
+
+section:nth-child(even) {  
+  background-color: #f8bbd0;
+  color: #fff;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+p {
+  line-height: 2em;
+}
+
+a {
+  display: inline;
+  color: #000;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-auto-rows: auto;
+}
+
+.gap {
+  grid-gap: 10px;
+}
+
+.row {
+  grid-column: span 4;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.corner-svg {
+  position: relative;
+  left: 230px;
+  bottom: 15px;
+}
+
+.btn {
+  padding: 1em;
+  grid-column: span 2;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  white-space: normal;
+}
+
+.modal {
+  top: 17vh;
+  right: 0;
+  position: absolute;
+  background: green;
+  width: 100%;
+  display: block;
+  animation: displayModal .3s;
+}
+
+.hide-modal {
+  display: none;
+  animation: hideModal 1s;
+}
+
+@keyframes displayModal {
+  from {
+    transform: scale(0);
+  } to {
+    transform: scale(1);
   }
-  #button0, #button1, #button2, #button3{
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-size: 1em;
-    text-shadow: 0px 0px 2px 0px #f8bbd0;
-    color: white;
-    border: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #f06292;
-    padding: 37px;
+}
+
+@keyframes hideModal {
+  from {
+    transform: scale(1);
+  } to {
+    transform: scale(0);
   }
-  #question{
-    color: white;
-    font-size: 26px;
+}
+
+footer {
+  border-top: 1px solid;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: auto;
+  padding: 1em;
+  width: 100%;
+  background: #f0f0f0;
+  color: #333;
+}
+
+footer svg {
+  color: #333;
+}
+
+.connect {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column: span 1;
+}
+
+.connect a {
+  text-decoration: none;
+  line-height: 0;
+}
+
+.footer-text {
+  font-size: .7em;
+  
+}
+
+@media only screen and (max-width: 720px) {
+  footer {
+    padding: 0.5em 0;
+    grid-template-rows: 1fr 1fr;
   }
-#button0:hover, #button1:hover, #button2:hover, #button3:hover,.answer:hover{
-    cursor: pointer;
-    background-color: #f8bbd0;
-    box-shadow: 0px 0px 20px 0px #37474f;
-  }
-  #timer{
-    padding: 5%;
-  }
-  #question{
-    padding: 18%;
-    font-size: 26px;
-  }
-  .container>div{
-    background-color: #f48fb1;
-  }
-  .item1{
-    grid-column: 1 / -1;
-    padding: 5%;
-  }
-  .item1 > img {
-    width: 80%;
-    height: 50%;
-    object-fit: cover;
-  }
-  #connect{
-    align: center;
-    text-shadow: 0px 0px 2px 0px #f8bbd0;
-    padding: 6%;
-  }
-  .networking{
-    max-width: 60px;
-    height: 60px;
-  }
-  .networking:hover{
-    opacity: .5;
-  }
-  #score{
+
+  .connect {
     grid-column: span 2;
   }
-h2{
-  padding: 39px;
-  grid-column: span 2;
+
+  .footer-text {
+    text-align: center;
+   /* thanks iphone x... */
+   font-size: .7em; 
+   grid-column: span 2;
+  }
 }
-h2 > a{
-  text-decoration: none;
-  color: white;
-}
-a:hover{
-  font-size: 2em;
-  color: #e91e63;
-}
+

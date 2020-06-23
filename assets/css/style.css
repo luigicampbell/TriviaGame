@@ -79,6 +79,10 @@ a {
   white-space: normal;
 }
 
+.start {
+  width: 100%;
+}
+
 .modal {
   top: 17vh;
   right: 0;

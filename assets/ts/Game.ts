@@ -5,7 +5,7 @@ class Game {
 
   private _quiz:Quiz;
   private _seconds:number = 30;
-  private _scores:Array<string> = JSON.parse( localStorage.getItem('scores') ) || [];
+  private _scores:Array<{'display':string,'score':number}> = JSON.parse( localStorage.getItem('scores') ).slice(0,9) || [];
   private _interval = setInterval(() => {
     this._timerHandler();
   }, 1000)
@@ -22,11 +22,11 @@ class Game {
     return this._quiz;
   }
 
-  get scores():Array<string> {
+  get scores():Array<{'display':string,'score':number}> {
     return this._scores;
   }
 
-  set scores(scores:Array<string>) {
+  set scores(scores:Array<{'display':string,'score':number}>) {
     this._scores = scores;
   }
 
@@ -47,18 +47,29 @@ class Game {
     const main:HTMLElement = (<HTMLElement>document.querySelector('main'));
     const scoreDate:Date = new Date();
     const remainder:number = scoreDate.getHours() % 12;
-    const hours:number = remainder ? remainder : 12; 
-    const scores:Array<string> = [...this.scores, `${this.quiz.score} / ${this.quiz.questions.length} - ${scoreDate.toLocaleDateString()} ${hours}:${scoreDate.getMinutes() < 10 ?'0'+scoreDate.getMinutes() : scoreDate.getMinutes()} ${scoreDate.getHours() >= 12 ? 'PM' : 'AM'}` ];
+    const hours:number = remainder ? remainder : 12;
+    const currentScore:number = this.quiz.score;
+    const displayScore:string = `${currentScore} / ${this.quiz.questions.length} - ${scoreDate.toLocaleDateString()} ${hours}:${scoreDate.getMinutes() < 10 ?'0'+scoreDate.getMinutes() : scoreDate.getMinutes()} ${scoreDate.getHours() >= 12 ? 'PM' : 'AM'}`;
+    const currentScorePayload:{'display':string,'score':number} = {
+      'display':displayScore,
+      'score': currentScore
+    };
+    const scores:Array<{'display':string,'score':number}> = [...this.scores, currentScorePayload]
+      .sort((a,b) => (b['score'] && Number(a['score']) < Number(b['score']) ? 1 : -1) );
+
+    console.log(scores);
+    console.log(JSON.stringify(scores));
     localStorage.setItem('scores',JSON.stringify(scores));
     this.scores = scores;
 
     main.innerHTML = '<section class="grid"><h1 class="row centered">High Scores</h1>';
-    const ul:HTMLElement = document.createElement('ul');
-    ul.setAttribute('class','row');
+    const ol:HTMLElement = document.createElement('ol');
+    ol.setAttribute('class','row');
     scores.forEach(score => {
+      console.log('SCORE=>',score)
       const li:HTMLElement = document.createElement('li');
-      li.innerText = score;
-      ul.appendChild(li);
+      li.innerText = score['display'];
+      ol.appendChild(li);
     });
     const button:HTMLInputElement = (<HTMLInputElement>document.createElement('INPUT'));
     button.value = 'Play Again?';
@@ -79,7 +90,7 @@ class Game {
     const div:HTMLElement = document.createElement('div');
     div.classList.add('centered','row');
     div.appendChild(button);
-    document.querySelector('section.grid').appendChild(ul);
+    document.querySelector('section.grid').appendChild(ol);
     document.querySelector('section.grid').appendChild(clearScoresRow);
     document.querySelector('section.grid').appendChild(div);
   }
@@ -99,18 +110,22 @@ class Game {
       if(buttonSection.hasChildNodes()) {
         buttonSection.innerHTML = '';
       }
-
+      buttonSection.classList.add('grid');
       choices.forEach((choice,index) => {
+        const wrapper:HTMLDivElement = (<HTMLDivElement>document.createElement('div'));
+        wrapper.classList.add('centered','col-2');
         const button:HTMLInputElement = (<HTMLInputElement>document.createElement('INPUT'));
+        
         button.type = 'button';
-        button.setAttribute('class','btn');
+        button.classList.add('btn','box');
         button.value = choice;
         button.onclick = () => { 
           this.quiz.guess(choice);
           this._resetTimer();
           this.populate();
         };
-        buttonSection.appendChild(button);
+        wrapper.appendChild(button);
+        buttonSection.appendChild(wrapper);
       });
     }
   }

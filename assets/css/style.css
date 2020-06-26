@@ -77,10 +77,18 @@ a {
   color: #FFF;
   padding: 1em;
   font-size: 1em;
-  grid-column: span 2;
   text-align: center;
   font-family: 'Roboto', sans-serif;
   white-space: normal;
+}
+
+.col-2 {
+  grid-column: span 2;
+}
+
+.box {
+  height: 100%;
+  width: 100%;
 }
 
 .btn:hover {

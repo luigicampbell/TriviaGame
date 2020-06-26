@@ -22,7 +22,7 @@ var Game = (function () {
     function Game(quiz) {
         var _this = this;
         this._seconds = 30;
-        this._scores = JSON.parse(localStorage.getItem('scores')) || [];
+        this._scores = JSON.parse(localStorage.getItem('scores')).slice(0, 9) || [];
         this._interval = setInterval(function () {
             _this._timerHandler();
         }, 1000);
@@ -71,16 +71,25 @@ var Game = (function () {
         var scoreDate = new Date();
         var remainder = scoreDate.getHours() % 12;
         var hours = remainder ? remainder : 12;
-        var scores = __spread(this.scores, [this.quiz.score + " / " + this.quiz.questions.length + " - " + scoreDate.toLocaleDateString() + " " + hours + ":" + (scoreDate.getMinutes() < 10 ? '0' + scoreDate.getMinutes() : scoreDate.getMinutes()) + " " + (scoreDate.getHours() >= 12 ? 'PM' : 'AM')]);
+        var currentScore = this.quiz.score;
+        var displayScore = currentScore + " / " + this.quiz.questions.length + " - " + scoreDate.toLocaleDateString() + " " + hours + ":" + (scoreDate.getMinutes() < 10 ? '0' + scoreDate.getMinutes() : scoreDate.getMinutes()) + " " + (scoreDate.getHours() >= 12 ? 'PM' : 'AM');
+        var currentScorePayload = {
+            'display': displayScore,
+            'score': currentScore
+        };
+        var scores = __spread(this.scores, [currentScorePayload]).sort(function (a, b) { return (b['score'] && Number(a['score']) < Number(b['score']) ? 1 : -1); });
+        console.log(scores);
+        console.log(JSON.stringify(scores));
         localStorage.setItem('scores', JSON.stringify(scores));
         this.scores = scores;
         main.innerHTML = '<section class="grid"><h1 class="row centered">High Scores</h1>';
-        var ul = document.createElement('ul');
-        ul.setAttribute('class', 'row');
+        var ol = document.createElement('ol');
+        ol.setAttribute('class', 'row');
         scores.forEach(function (score) {
+            console.log('SCORE=>', score);
             var li = document.createElement('li');
-            li.innerText = score;
-            ul.appendChild(li);
+            li.innerText = score['display'];
+            ol.appendChild(li);
         });
         var button = document.createElement('INPUT');
         button.value = 'Play Again?';
@@ -101,7 +110,7 @@ var Game = (function () {
         var div = document.createElement('div');
         div.classList.add('centered', 'row');
         div.appendChild(button);
-        document.querySelector('section.grid').appendChild(ul);
+        document.querySelector('section.grid').appendChild(ol);
         document.querySelector('section.grid').appendChild(clearScoresRow);
         document.querySelector('section.grid').appendChild(div);
     };
@@ -120,17 +129,21 @@ var Game = (function () {
             if (buttonSection_1.hasChildNodes()) {
                 buttonSection_1.innerHTML = '';
             }
+            buttonSection_1.classList.add('grid');
             choices.forEach(function (choice, index) {
+                var wrapper = document.createElement('div');
+                wrapper.classList.add('centered', 'col-2');
                 var button = document.createElement('INPUT');
                 button.type = 'button';
-                button.setAttribute('class', 'btn');
+                button.classList.add('btn', 'box');
                 button.value = choice;
                 button.onclick = function () {
                     _this.quiz.guess(choice);
                     _this._resetTimer();
                     _this.populate();
                 };
-                buttonSection_1.appendChild(button);
+                wrapper.appendChild(button);
+                buttonSection_1.appendChild(wrapper);
             });
         }
     };

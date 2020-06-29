@@ -130,7 +130,7 @@ class Game {
     }
   }
 
-  public static shuffle = ( list:Array<string> ):Array<string> => {
+  public static shuffle = ( list:Array<any> ):Array<any> => {
     let counter:number = list.length;
     let temp:string;
     let index:number;

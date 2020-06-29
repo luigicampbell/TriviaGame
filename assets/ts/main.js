@@ -2,7 +2,7 @@ var Main = (function () {
     function Main() {
     }
     Main.start = function () {
-        var questions = [
+        var questions = Game.shuffle([
             new Question("What is Medela's Hospital Grade Pump called?", "Symphony", [
                 "Pumpin' Style",
                 "Spectra",
@@ -48,7 +48,7 @@ var Main = (function () {
                 "Breast-Feeding Toddlers",
                 "Engorged Breasts",
             ]),
-        ];
+        ]);
         var quiz = new Quiz(questions);
         new Game(quiz).populate();
     };

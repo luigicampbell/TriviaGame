@@ -1,6 +1,6 @@
 class Main {
   public static start(): void {
-    const questions = [
+    const questions =Game.shuffle([
       new Question("What is Medela's Hospital Grade Pump called?", "Symphony", [
         "Pumpin' Style",
         "Spectra",
@@ -70,7 +70,7 @@ class Main {
           "Engorged Breasts",
         ]
       ),
-    ];
+    ]);
 
     const quiz: Quiz = new Quiz(questions);
     new Game(quiz).populate();

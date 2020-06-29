@@ -177,7 +177,16 @@ var Game = (function () {
     Game.displayModal = function () {
         var modal = document.querySelector('div.hide-modal') || document.createElement('div');
         var display = document.querySelector('section.centered.timer');
-        modal.innerText = 'TEST';
+        var positiveReinforcementMessages = [
+            "Correct!",
+            "~~Awesome~~",
+            "There is no spoon :D",
+            "You know your stuff!",
+            "Well done!",
+            "Dr. Frizzle would be proud.",
+            "You did it!"
+        ];
+        modal.innerText = positiveReinforcementMessages[Math.floor(Math.random() * 7)];
         modal.classList.remove('hide-modal');
         modal.classList.add('modal', 'text-center');
         display.appendChild(modal);

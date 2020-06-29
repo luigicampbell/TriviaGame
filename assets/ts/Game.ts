@@ -130,7 +130,11 @@ class Game {
         button.classList.add('btn','box');
         button.value = choice;
         button.onclick = () => { 
-          this.quiz.guess(choice);
+          const isCorrect:boolean = this.quiz.guess(choice);
+          // console.log(isCorrect);
+          if(isCorrect) {
+            Game.displayModal();
+          }
           this._resetTimer();
           this.populate();
         };
@@ -156,6 +160,18 @@ class Game {
     }
 
     return list;
+  }
+
+  public static displayModal = ():void => {
+    // console.log('DISPLAY MODAL');
+    const modal:HTMLDivElement = document.querySelector('div.hide-modal') as HTMLDivElement;
+    modal.classList.remove('hide-modal');
+    modal.classList.add('modal','text-center');
+
+    setTimeout(() => {
+      modal.classList.add('hide-modal');
+      modal.classList.remove('modal');
+    }, 1000);
   }
 
   public static getCurrentYear = ():number => {

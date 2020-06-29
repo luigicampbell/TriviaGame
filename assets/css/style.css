@@ -108,6 +108,7 @@ a {
   right: 0;
   position: absolute;
   background: green;
+  color: #fff;
   width: 100%;
   display: block;
   animation: displayModal .3s;

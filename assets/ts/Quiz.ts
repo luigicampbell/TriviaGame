@@ -45,10 +45,12 @@ class Quiz {
     return this.questions.length == this.questionIndex;
   }
 
-  public guess = (answer:string):void => {
-    if(this.question.isCorrectAnswer(answer)) {
+  public guess = (answer:string):boolean => {
+    const isCorrectAnswer:boolean = this.question.isCorrectAnswer(answer);
+    if(isCorrectAnswer) {
       this.score++;
     }
     this.questionIndex++;
+    return isCorrectAnswer;
   }
 }

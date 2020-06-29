@@ -7,10 +7,12 @@ var Quiz = (function () {
         this._questionIndex = 0;
         this._questions = new Array();
         this.guess = function (answer) {
-            if (_this.question.isCorrectAnswer(answer)) {
+            var isCorrectAnswer = _this.question.isCorrectAnswer(answer);
+            if (isCorrectAnswer) {
                 _this.score++;
             }
             _this.questionIndex++;
+            return isCorrectAnswer;
         };
         this._score = score;
         this._questions = questions;

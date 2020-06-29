@@ -146,7 +146,10 @@ var Game = (function () {
                 button.classList.add('btn', 'box');
                 button.value = choice;
                 button.onclick = function () {
-                    _this.quiz.guess(choice);
+                    var isCorrect = _this.quiz.guess(choice);
+                    if (isCorrect) {
+                        Game.displayModal();
+                    }
                     _this._resetTimer();
                     _this.populate();
                 };
@@ -166,6 +169,15 @@ var Game = (function () {
             list[index] = temp;
         }
         return list;
+    };
+    Game.displayModal = function () {
+        var modal = document.querySelector('div.hide-modal');
+        modal.classList.remove('hide-modal');
+        modal.classList.add('modal', 'text-center');
+        setTimeout(function () {
+            modal.classList.add('hide-modal');
+            modal.classList.remove('modal');
+        }, 1000);
     };
     Game.getCurrentYear = function () {
         return new Date().getFullYear();

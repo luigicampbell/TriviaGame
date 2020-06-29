@@ -104,7 +104,7 @@ class Game {
       const questionElement:HTMLParagraphElement = document.querySelector('p.question') as HTMLParagraphElement;
       questionElement.innerText = this.quiz.question.text;
       
-      const choices:Array<string> = this.quiz.question.choices;
+      const choices:Array<string> = Game.shuffle( this.quiz.question.choices );
       const buttonSection:HTMLElement = (<HTMLElement> document.querySelector(`section.button-container`));
       
       if(buttonSection.hasChildNodes()) {
@@ -128,6 +128,24 @@ class Game {
         buttonSection.appendChild(wrapper);
       });
     }
+  }
+
+  public static shuffle = ( list:Array<string> ):Array<string> => {
+    let counter:number = list.length;
+    let temp:string;
+    let index:number;
+
+    // While there remain elements to shuffle…
+    while (counter) {
+      index = Math.floor(Math.random() * counter--);
+
+      // And swap it with the current element.
+      temp = list[counter];
+      list[counter] = list[index];
+      list[index] = temp;
+    }
+
+    return list;
   }
 
   public static getCurrentYear = ():number => {

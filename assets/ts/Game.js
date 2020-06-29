@@ -124,7 +124,7 @@ var Game = (function () {
         else {
             var questionElement = document.querySelector('p.question');
             questionElement.innerText = this.quiz.question.text;
-            var choices = this.quiz.question.choices;
+            var choices = Game.shuffle(this.quiz.question.choices);
             var buttonSection_1 = document.querySelector("section.button-container");
             if (buttonSection_1.hasChildNodes()) {
                 buttonSection_1.innerHTML = '';
@@ -146,6 +146,18 @@ var Game = (function () {
                 buttonSection_1.appendChild(wrapper);
             });
         }
+    };
+    Game.shuffle = function (list) {
+        var counter = list.length;
+        var temp;
+        var index;
+        while (counter) {
+            index = Math.floor(Math.random() * counter--);
+            temp = list[counter];
+            list[counter] = list[index];
+            list[index] = temp;
+        }
+        return list;
     };
     Game.getCurrentYear = function () {
         return new Date().getFullYear();

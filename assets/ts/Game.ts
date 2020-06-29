@@ -5,7 +5,7 @@ class Game {
 
   private _quiz:Quiz;
   private _seconds:number = 30;
-  private _scores:Array<{'display':string,'score':number}> = JSON.parse( localStorage.getItem('scores') ).slice(0,9) || [];
+  private _scores:Array<{'display':string,'score':number}> = localStorage.getItem('scores') ? JSON.parse( localStorage.getItem('scores') ).slice(0,9) : [];
   private _interval = setInterval(() => {
     this._timerHandler();
   }, 1000)

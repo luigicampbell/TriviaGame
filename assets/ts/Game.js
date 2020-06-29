@@ -22,7 +22,7 @@ var Game = (function () {
     function Game(quiz) {
         var _this = this;
         this._seconds = 30;
-        this._scores = JSON.parse(localStorage.getItem('scores')).slice(0, 9) || [];
+        this._scores = localStorage.getItem('scores') ? JSON.parse(localStorage.getItem('scores')).slice(0, 9) : [];
         this._interval = setInterval(function () {
             _this._timerHandler();
         }, 1000);

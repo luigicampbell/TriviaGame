@@ -100,28 +100,32 @@ var Game = (function () {
             li.innerText = score['display'];
             ol.appendChild(li);
         });
-        var button = document.createElement('INPUT');
-        button.value = 'Play Again?';
-        button.setAttribute('class', 'btn');
-        button.onclick = function () {
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('centered', 'col-2');
+        var playAgainButton = document.createElement('INPUT');
+        playAgainButton.value = 'Play Again?';
+        playAgainButton.type = 'button';
+        playAgainButton.classList.add('btn', 'game-over');
+        playAgainButton.onclick = function () {
             location.reload();
         };
         var clearScoresButton = document.createElement('INPUT');
         clearScoresButton.value = 'Clear Scores?';
-        clearScoresButton.setAttribute('class', 'btn');
+        clearScoresButton.type = 'button';
+        clearScoresButton.classList.add('btn', 'game-over');
         clearScoresButton.onclick = function () {
             localStorage.setItem('scores', JSON.stringify(new Array()));
-            Main.start();
+            location.reload();
         };
         var clearScoresRow = document.createElement('div');
         clearScoresRow.classList.add('centered', 'row');
         clearScoresRow.appendChild(clearScoresButton);
-        var div = document.createElement('div');
-        div.classList.add('centered', 'row');
-        div.appendChild(button);
+        var playAgainRow = document.createElement('div');
+        playAgainRow.classList.add('centered', 'row');
+        playAgainRow.appendChild(playAgainButton);
         document.querySelector('section.grid').appendChild(ol);
         document.querySelector('section.grid').appendChild(clearScoresRow);
-        document.querySelector('section.grid').appendChild(div);
+        document.querySelector('section.grid').appendChild(playAgainRow);
     };
     Game.prototype.populate = function () {
         var _this = this;
@@ -171,13 +175,16 @@ var Game = (function () {
         return list;
     };
     Game.displayModal = function () {
-        var modal = document.querySelector('div.hide-modal');
+        var modal = document.querySelector('div.hide-modal') || document.createElement('div');
+        var display = document.querySelector('section.centered.timer');
+        modal.innerText = 'TEST';
         modal.classList.remove('hide-modal');
         modal.classList.add('modal', 'text-center');
+        display.appendChild(modal);
         setTimeout(function () {
             modal.classList.add('hide-modal');
             modal.classList.remove('modal');
-        }, 1000);
+        }, 500);
     };
     Game.getCurrentYear = function () {
         return new Date().getFullYear();

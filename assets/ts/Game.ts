@@ -81,28 +81,33 @@ class Game {
       li.innerText = score['display'];
       ol.appendChild(li);
     });
-    const button:HTMLInputElement = (<HTMLInputElement>document.createElement('INPUT'));
-    button.value = 'Play Again?';
-    button.setAttribute('class','btn');
-    button.onclick = () => {
+    const wrapper:HTMLDivElement = (<HTMLDivElement>document.createElement('div'));
+        wrapper.classList.add('centered','col-2');
+    const playAgainButton:HTMLInputElement = (<HTMLInputElement>document.createElement('INPUT'));
+    playAgainButton.value = 'Play Again?';
+    playAgainButton.type = 'button';
+    playAgainButton.classList.add('btn','game-over'); //should also probably make these actual type buttons
+    playAgainButton.onclick = () => {
       location.reload();
     };
     const clearScoresButton:HTMLInputElement = (<HTMLInputElement>document.createElement('INPUT'));
     clearScoresButton.value = 'Clear Scores?';
-    clearScoresButton.setAttribute('class','btn');
+    clearScoresButton.type = 'button';
+    clearScoresButton.classList.add('btn','game-over');
     clearScoresButton.onclick = () => {
       localStorage.setItem('scores',JSON.stringify(new Array<number>()));
-      Main.start();
+      location.reload();
     };
     const clearScoresRow:HTMLElement = document.createElement('div');
     clearScoresRow.classList.add('centered','row');
     clearScoresRow.appendChild(clearScoresButton);
-    const div:HTMLElement = document.createElement('div');
-    div.classList.add('centered','row');
-    div.appendChild(button);
+    const playAgainRow:HTMLElement = document.createElement('div');
+    playAgainRow.classList.add('centered','row');
+    playAgainRow.appendChild(playAgainButton);
+    
     document.querySelector('section.grid').appendChild(ol);
     document.querySelector('section.grid').appendChild(clearScoresRow);
-    document.querySelector('section.grid').appendChild(div);
+    document.querySelector('section.grid').appendChild(playAgainRow);
   }
 
   public populate():void {
@@ -164,14 +169,17 @@ class Game {
 
   public static displayModal = ():void => {
     // console.log('DISPLAY MODAL');
-    const modal:HTMLDivElement = document.querySelector('div.hide-modal') as HTMLDivElement;
+    const modal:HTMLDivElement = document.querySelector('div.hide-modal') || document.createElement('div');
+    const display:HTMLElement = document.querySelector('section.centered.timer');
+    modal.innerText = 'TEST';
     modal.classList.remove('hide-modal');
     modal.classList.add('modal','text-center');
+    display.appendChild(modal);
 
     setTimeout(() => {
       modal.classList.add('hide-modal');
       modal.classList.remove('modal');
-    }, 1000);
+    }, 500);
   }
 
   public static getCurrentYear = ():number => {

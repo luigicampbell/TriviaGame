@@ -99,6 +99,10 @@ a {
   background-color: #ff8a80;
 }
 
+.game-over {
+  min-width: 175px;
+}
+
 .start {
   width: 100%;
 }

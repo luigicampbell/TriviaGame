@@ -26,6 +26,7 @@ var Game = (function () {
         this._interval = setInterval(function () {
             _this._timerHandler();
         }, 1000);
+        this._timeElapsed = 0;
         this._quiz = quiz;
     }
     Object.defineProperty(Game.prototype, "seconds", {
@@ -55,6 +56,16 @@ var Game = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Game.prototype, "timeElapsed", {
+        get: function () {
+            return this._timeElapsed;
+        },
+        set: function (timeElapsed) {
+            this._timeElapsed = timeElapsed;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Game.prototype._timerHandler = function () {
         document.getElementById("timer").innerText = this.seconds < 10 ? "00:0" + this.seconds-- : "00:" + this.seconds--;
         if (this.seconds == -1) {
@@ -62,6 +73,7 @@ var Game = (function () {
             this.quiz.guess('');
             this.populate();
         }
+        this.timeElapsed++;
     };
     Game.prototype._resetTimer = function () {
         this.seconds = 30;
@@ -72,21 +84,18 @@ var Game = (function () {
         var remainder = scoreDate.getHours() % 12;
         var hours = remainder ? remainder : 12;
         var currentScore = this.quiz.score;
-        var displayScore = currentScore + " / " + this.quiz.questions.length + " - " + scoreDate.toLocaleDateString() + " " + hours + ":" + (scoreDate.getMinutes() < 10 ? '0' + scoreDate.getMinutes() : scoreDate.getMinutes()) + " " + (scoreDate.getHours() >= 12 ? 'PM' : 'AM');
+        var displayScore = currentScore + " / " + this.quiz.questions.length + " - " + scoreDate.toLocaleDateString() + " " + hours + ":" + (scoreDate.getMinutes() < 10 ? '0' + scoreDate.getMinutes() : scoreDate.getMinutes()) + " " + (scoreDate.getHours() >= 12 ? 'PM' : 'AM') + "\n Time Elapsed: " + this.timeElapsed + " seconds";
         var currentScorePayload = {
             'display': displayScore,
             'score': currentScore
         };
         var scores = __spread(this.scores, [currentScorePayload]).sort(function (a, b) { return (b['score'] && Number(a['score']) < Number(b['score']) ? 1 : -1); });
-        console.log(scores);
-        console.log(JSON.stringify(scores));
         localStorage.setItem('scores', JSON.stringify(scores));
         this.scores = scores;
         main.innerHTML = '<section class="grid"><h1 class="row centered">High Scores</h1>';
         var ol = document.createElement('ol');
         ol.setAttribute('class', 'row');
         scores.forEach(function (score) {
-            console.log('SCORE=>', score);
             var li = document.createElement('li');
             li.innerText = score['display'];
             ol.appendChild(li);
@@ -102,7 +111,7 @@ var Game = (function () {
         clearScoresButton.setAttribute('class', 'btn');
         clearScoresButton.onclick = function () {
             localStorage.setItem('scores', JSON.stringify(new Array()));
-            location.reload();
+            Main.start();
         };
         var clearScoresRow = document.createElement('div');
         clearScoresRow.classList.add('centered', 'row');
@@ -117,7 +126,6 @@ var Game = (function () {
     Game.prototype.populate = function () {
         var _this = this;
         if (this.quiz.isGameOver) {
-            console.log('GAME OVER');
             clearInterval(this._interval);
             this._showScores();
         }

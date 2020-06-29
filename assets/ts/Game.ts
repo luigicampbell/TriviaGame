@@ -8,7 +8,8 @@ class Game {
   private _scores:Array<{'display':string,'score':number}> = localStorage.getItem('scores') ? JSON.parse( localStorage.getItem('scores') ).slice(0,9) : [];
   private _interval = setInterval(() => {
     this._timerHandler();
-  }, 1000)
+  }, 1000);
+  private _timeElapsed:number = 0;
 
   get seconds():number {
     return this._seconds;
@@ -30,6 +31,14 @@ class Game {
     this._scores = scores;
   }
 
+  get timeElapsed():number {
+    return this._timeElapsed;
+  }
+
+  set timeElapsed(timeElapsed) {
+    this._timeElapsed = timeElapsed;
+  }
+
   private _timerHandler():void {
     document.getElementById("timer").innerText = this.seconds < 10 ? `00:0${this.seconds--}` : `00:${this.seconds--}`;
     if(this.seconds == -1) {
@@ -37,6 +46,7 @@ class Game {
       this.quiz.guess('');
       this.populate();
     }
+    this.timeElapsed++;
   }
 
   private _resetTimer():void {
@@ -49,7 +59,7 @@ class Game {
     const remainder:number = scoreDate.getHours() % 12;
     const hours:number = remainder ? remainder : 12;
     const currentScore:number = this.quiz.score;
-    const displayScore:string = `${currentScore} / ${this.quiz.questions.length} - ${scoreDate.toLocaleDateString()} ${hours}:${scoreDate.getMinutes() < 10 ?'0'+scoreDate.getMinutes() : scoreDate.getMinutes()} ${scoreDate.getHours() >= 12 ? 'PM' : 'AM'}`;
+    const displayScore:string = `${currentScore} / ${this.quiz.questions.length} - ${scoreDate.toLocaleDateString()} ${hours}:${scoreDate.getMinutes() < 10 ?'0'+scoreDate.getMinutes() : scoreDate.getMinutes()} ${scoreDate.getHours() >= 12 ? 'PM' : 'AM'}\n Time Elapsed: ${this.timeElapsed} seconds`;
     const currentScorePayload:{'display':string,'score':number} = {
       'display':displayScore,
       'score': currentScore
@@ -57,8 +67,8 @@ class Game {
     const scores:Array<{'display':string,'score':number}> = [...this.scores, currentScorePayload]
       .sort((a,b) => (b['score'] && Number(a['score']) < Number(b['score']) ? 1 : -1) );
 
-    console.log(scores);
-    console.log(JSON.stringify(scores));
+    // console.log(scores);
+    // console.log(JSON.stringify(scores));
     localStorage.setItem('scores',JSON.stringify(scores));
     this.scores = scores;
 
@@ -66,7 +76,7 @@ class Game {
     const ol:HTMLElement = document.createElement('ol');
     ol.setAttribute('class','row');
     scores.forEach(score => {
-      console.log('SCORE=>',score)
+      // console.log('SCORE=>',score)
       const li:HTMLElement = document.createElement('li');
       li.innerText = score['display'];
       ol.appendChild(li);
@@ -82,7 +92,7 @@ class Game {
     clearScoresButton.setAttribute('class','btn');
     clearScoresButton.onclick = () => {
       localStorage.setItem('scores',JSON.stringify(new Array<number>()));
-      location.reload();
+      Main.start();
     };
     const clearScoresRow:HTMLElement = document.createElement('div');
     clearScoresRow.classList.add('centered','row');
@@ -97,7 +107,7 @@ class Game {
 
   public populate():void {
     if(this.quiz.isGameOver) {
-      console.log('GAME OVER');
+      // console.log('GAME OVER');
       clearInterval(this._interval);
       this._showScores();
     } else {
@@ -127,7 +137,7 @@ class Game {
         wrapper.appendChild(button);
         buttonSection.appendChild(wrapper);
       });
-    }
+    }  
   }
 
   public static shuffle = ( list:Array<any> ):Array<any> => {

@@ -1,6 +1,6 @@
 class Main {
   public static start(): void {
-    const questions =Game.shuffle([
+    const questions = Game.shuffle([
       new Question("What is Medela's Hospital Grade Pump called?", "Symphony", [
         "Pumpin' Style",
         "Spectra",
